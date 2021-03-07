@@ -1,0 +1,34 @@
+composer() {
+    COMPOSER_HOME=/root/.config/composer
+    COMPOSER_CACHE_DIR=/root/.cache/composer
+
+    docker run \
+        --rm \
+        --interactive \
+        --tty \
+        --workdir=${PWD} \
+        --volume=/etc/ssl:/etc/ssl:ro \
+        --volume=/etc/ca-certificates:/etc/ca-certificates:ro \
+        --volume=${HOME}/.ssh:/root/.ssh:ro \
+        --volume=${PWD}:${PWD} \
+        --volume=${HOME}/.config/composer:${COMPOSER_HOME} \
+        --volume=${HOME}/.cache/composer:${COMPOSER_CACHE_DIR} \
+        --env=COMPOSER_HOME=${COMPOSER_HOME} \
+        composer $@
+}
+
+npm() {
+    NPM_CACHE=/root/.npm
+
+    docker run \
+        --rm \
+        --interactive \
+        --tty \
+        --workdir=${PWD} \
+        --volume=/etc/ssl:/etc/ssl:ro \
+        --volume=/etc/ca-certificates:/etc/ca-certificates:ro \
+        --volume=${HOME}/.ssh:/root/.ssh:ro \
+        --volume=${PWD}:${PWD} \
+        --volume=${HOME}/.cache/npm:${NPM_CACHE} \
+        node npm $@
+}

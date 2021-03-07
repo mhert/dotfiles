@@ -1,0 +1,12 @@
+[user]
+    name = Mathias Hertlein
+    email = mathias.hertlein@myrasecurity.com
+
+[init]
+    defaultBranch = master
+    
+[commit]
+    gpgsign = false
+
+[tag]
+    gpgSign = false
